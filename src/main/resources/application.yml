@@ -1,0 +1,30 @@
+server:
+  port: 8055
+
+spring:
+  application:
+    name: API-GATEWAY
+
+  cloud:
+    gateway:
+      routes:
+        - id: CUSTOMERSERVICE
+          uri: lb://CUSTOMERSERVICE
+          predicates:
+            - Path=/customer/**
+        - id: EmployeeManagement
+          uri: lb://EmployeeManagement
+          predicates:
+            - Path=/employee/**
+
+
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8051/eureka
+
+
+
